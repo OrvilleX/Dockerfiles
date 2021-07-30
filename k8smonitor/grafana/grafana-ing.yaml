@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: grafana
+  namespace: kube-system
+spec:
+  tls:
+  - hosts:
+    - grafana.vip56.cn
+    secretName: vip56-secret
+  rules:
+  - host: grafana.vip56.cn
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: grafana
+          servicePort: 80
